@@ -24,4 +24,5 @@
 
 Την κεντρική διαχείριση των μετεωρολογικών δεδομένων αναλαμβάνει το λογισμικό διαχείρισης μετεωρολογικών δεδομένων ανοικτού κώδικα [WeeWX](https://github.com/weewx/weewx). Η διασύνδεση του microbit+weatherbit με το WeeWX γίνεται μέσω καλωδίου USB-σειριακής σύνδεσης από το microbit προς το Raspberry Pi (δεν παίζει ρόλο η θύρα USB που θα χρησιμοποιηθεί) και η εισαγωγή δεδομένων από το microbit γίνεται μέσω προσαρμοσμένου οδηγού (weewx driver) που έχει γραφτεί για το λογισμικό WeeWX. Να σημειωθεί πως οι εκδόσεις του οδηγού microbit.py για το WeeWx και του λογισμικού για το weatherbit πρέπει να είναι συμβατές μεταξύ τους, καθότι βάση αυτών γίνεται η εισαγωγή δεδομένων στο λογισμικό WeeWx.
 
-Το weewx-skin που έχει επιλεγεί είναι το [BelcherTown](https://github.com/poblabs/weewx-belchertown). Για λόγους ευκολίας, στο παρόν αποθετήριο έχει προστεθεί το βασικό αρχείο ρυθμίσεων weewx.conf του WeeWx που περιέχει επίσης override values για το skin.
+Το weewx-skin που έχει επιλεγεί είναι το [BelcherTown](https://github.com/poblabs/weewx-belchertown). Για λόγους ευκολίας, στο παρόν αποθετήριο έχει προστεθεί το βασικό αρχείο ρυθμίσεων [weewx.conf](https://github.com/thagorastos/school-weather-station/blob/master/weewx.conf) του WeeWx που περιέχει επίσης override values για το skin.
+
