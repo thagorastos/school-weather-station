@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 #
-# This is a weeWX driver to enable weeWX to read data from a Microbit Climate.
+# This is a weeWX driver to enable weeWX to read data from an Arduino weather station.
 #
 # See here for more details:
 #
-# https://github.com/wrybread/ArduinoWeatherStation
+# https://github.com/wrybread/weewx-ArduinoWeatherStation
 #
-# by th_agorastos@hotmail.com
+# by wrybread@gmail.com
+#
+# Microbit-weatherbit version by th_agorastos@hotmail.com
 #
 #
 #
@@ -15,7 +17,7 @@
 
 See here for more info:
 
-https://google.gr
+https://github.com/thagorastos/school-weather-station
 
 """
 
@@ -65,7 +67,7 @@ def logerr(msg):
 
 
 class MicrobitDriver(weewx.drivers.AbstractDevice):
-    """weewx driver that communicates with an Arduino weather station
+    """weewx driver that communicates with an microbit weather station
 
     port - serial port
     [Required. Default is /dev/ttyACM0]
@@ -96,7 +98,7 @@ class MicrobitDriver(weewx.drivers.AbstractDevice):
         self.read_counter = 0
 
 
-        logdbg("Opening the Arduino on port %s" % self.port)
+        logdbg("Opening the microbit on port %s" % self.port)
 
         self.baudrate = 115200
         self.timeout = 10  # changed from 60
@@ -107,11 +109,11 @@ class MicrobitDriver(weewx.drivers.AbstractDevice):
                                              timeout=self.timeout)
             self.serial_port.flush()
 
-            logdbg("Successfully opened the Arduino.")
+            logdbg("Successfully opened the microbit.")
 
         except Exception as e:
 
-            logerr("Error opening the Arduino! %s" % e)
+            logerr("Error opening the microbit! %s" % e)
 
     def read_buffer(self):
         # read the buffer
@@ -134,7 +136,7 @@ class MicrobitDriver(weewx.drivers.AbstractDevice):
 
     def parse_readings(self, b):
         """
-        The Arduino script emits data in the format:
+        The microbit script emits data in the format:
 
           [0]wind speed
           [1]wind direction
@@ -142,7 +144,7 @@ class MicrobitDriver(weewx.drivers.AbstractDevice):
           [3]temperature
           [4]barometer
         """
-  
+
         data = {}
 
         try:
@@ -299,4 +301,3 @@ if __name__ == '__main__':
     station = MicrobitDriver()
     for packet in station.genLoopPackets():
         print(time.time(), packet)
-
