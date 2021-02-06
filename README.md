@@ -26,3 +26,9 @@
 
 Το weewx-skin που έχει επιλεγεί είναι το [BelcherTown](https://github.com/poblabs/weewx-belchertown). Για λόγους ευκολίας, στο παρόν αποθετήριο έχει προστεθεί το βασικό αρχείο ρυθμίσεων [weewx.conf](https://github.com/thagorastos/school-weather-station/blob/master/weewx.conf) του WeeWx που περιέχει επίσης override values για το skin.
 
+## Αρχείο ρυθμίσεων weewx.conf
+
+Για τη λειτουργία του weewx χρειάζεται να προσαρμοστούν οι ρυθμίσεις σας για τις παρακάτω ενότητες:
+* mqtt server (για την αποστολή μετρήσεων πραγματικού χρόνου)
+* στοιχεία σύνδεσης για ftp ή/και rsync (για την ανάρτηση του περιεχομένου του ιστότοπου)
+* API κλειδιά και διαπιστευτήρια για κάθε 3η υπηρεσία διασύνδεσης (π.χ. Windy, Wunderground κ.λπ.)
