@@ -1,6 +1,6 @@
-# school-weather-station
+# [weather-3dimagnilas.mysch.gr](http://weather-3dimagnilas.mysch.gr)
 Σχολικός μετεωρολογικός σταθμός
-
+![Φωτογραφίες μεταωρολογικού σταθμού](https://github.com/thagorastos/school-weather-station/blob/master/φωτογραφίες-υλικού/photo-collage.jpg)
 ## Στόχοι
 
 Συναρμολόγηση του Microbit Climate Kit
