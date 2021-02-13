@@ -138,11 +138,15 @@ class MicrobitDriver(weewx.drivers.AbstractDevice):
         """
         The microbit script emits data in the format:
 
-          [0]wind speed
-          [1]wind direction
-          [2]wind direction compass
-          [3]temperature
-          [4]barometer
+          [0]outTemp
+          [1]pressure
+          [2]outHumidity
+          [3]windSpeed
+          [4]windDir
+          [5]soilMoist1 (not currently used; sensor not connected)
+          [6]soilTemp1
+          [7]rain_total
+
         """
 
         data = {}
@@ -157,10 +161,11 @@ class MicrobitDriver(weewx.drivers.AbstractDevice):
                 data['outHumidity'] = float(parts[2])
                 data['windSpeed'] = float(parts[3])
                 data['windDir'] = float(parts[4])
-                data['soilMoist1'] = float(parts[5])
+                # data['soilMoist1'] = float(parts[5])
                 data['soilTemp1'] = float(parts[6])
                 rain = parts[7].replace('\r\n', '').strip()
-                data['rainTotal'] = float(rain)
+                data['rain_total'] = float(rain)
+
                 # pprint("Microbit driver: ", data)
 
         except Exception as e:
@@ -235,13 +240,9 @@ class MicrobitDriver(weewx.drivers.AbstractDevice):
         if 'windSpeed' in packet and not packet['windSpeed']:
             packet['windDir'] = None
 
-	# packet['rain'] = weewx.wxformulas.calculate_rain(packet.get('rain_total'), self.last_rain)
-        # self.last_rain = packet.get('rain_total')
-
-
-
-
-
+        # calculate rain from rain_total
+        packet['rain'] = weewx.wxformulas.calculate_rain(packet.get('rain_total'), self.last_rain)
+        self.last_rain = packet.get('rain_total')
 
 
 
@@ -251,7 +252,7 @@ class MicrobitConfEditor(weewx.drivers.AbstractConfEditor):
     def default_stanza(self):
         return """
 [Microbit]
-    # This section is for an Arduion Weather Station.
+    # This section is for a Microbit Weather Station.
 
     # Serial port such as /dev/ttyACM0, /dev/ttyS0, /dev/ttyUSB0, or /dev/cuaU0
     port = /dev/ttyACM0
